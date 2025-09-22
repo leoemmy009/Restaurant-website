@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bella Cucina - Authentic Italian Cuisine</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+       /* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+        
+body {
+    color: #333;
+    line-height: 1.6;
+    background-color: #f9f6f1;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.btn{
+    margin-top: 20px;
+    display: inline-block;
+    background: #c12f2f;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+} 
+
+.btn:hover {
+    background: #a02828;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+section {
+    padding: 80px 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+    color: #333;
+}
+
+.section-title h2 {
+    font-size: 36px;
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: #c12f2f;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Header & Navigation */
+header {
+    background-color: rgba(0, 0, 0, 0.9);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    padding: 15px 0;
+    transition: all 0.3s ease;
+}
+header.scrolled {
+    padding: 10px 0;
+    background-color: rgba(0, 0, 0, 0.95);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chef-hat-icon {
+    color: #a02828;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+}
+
+.logo span {
+    color: #c12f2f;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 30px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #c12f2f;
+}
+
+.menu-toggle {
+    display: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../IMAGES/top-pizza.jpg') no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.hero-content h1 {
+    font-size: 56px;
+    margin-bottom: 20px;
+    animation: fadeInDown 1s ease;
+}
+
+.hero-content p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeInUp 1s ease;
+}
+
+/* About Section */
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.about-text {
+    flex: 1;
+}
+
+.about-image {
+    flex: 1;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.about-image:hover img {
+    transform: scale(1.05);
+}
+
+/* Menu Section */
+.menu {
+    background-color: #fff;
+}
+
+.menu-filters {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: none;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 10px 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    color: #555;
+    transition: all 0.3s ease;
+}
+
+.filter-btn.active, .filter-btn:hover {
+    color: #c12f2f;
+}
+
+.menu-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.menu-item {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.menu-item:hover {
+    transform: translateY(-10px);
+}
+
+.menu-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.menu-item-content {
+    padding: 20px;
+}
+
+.menu-item-title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.menu-item-title h3 {
+    font-size: 20px;
+}
+
+.menu-item-price {
+    color: #c12f2f;
+    font-weight: 700;
+}
+
+/* Testimonials */
+.testimonials {
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../IMAGES/testimonials.jpg') no-repeat center center/cover;
+    color: white;
+    text-align: center;
+}
+
+.testimonials-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.testimonial {
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    margin-bottom: 30px;
+    display: none;
+}
+
+.testimonial.active {
+    display: block;
+    animation: fadeIn 1s ease;
+}
+
+.testimonial-text {
+    font-style: italic;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.testimonial-author {
+    font-weight: 700;
+    color: #c12f2f;
+}
+
+.testimonial-nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.testimonial-dot {
+    width: 12px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.testimonial-dot.active {
+    background: #c12f2f;
+}
+
+/* Reservation */
+.reservation {
+    text-align: center;
+}
+
+.reservation-form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group.full {
+    grid-column: 1 / span 2;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Footer */
+footer {
+    background: #222;
+    color: white;
+    padding: 60px 0 30px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-section h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: #c12f2f;
+}
+
+.footer-contact p {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.footer-contact i {
+    margin-right: 10px;
+    color: #c12f2f;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #ddd;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #c12f2f;
+}
+
+.footer-social {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.footer-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #333;
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-social a:hover {
+    background: #c12f2f;
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid #444;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .about-content {
+        flex-direction: column;
+    }
+    
+    .about-image {
+        margin-top: 30px;
+    }
+    
+    .hero-content h1 {
+        font-size: 42px;
+    }
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+    
+    nav {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 80%;
+        height: calc(100vh - 70px);
+        background: #222;
+        transition: all 0.3s ease;
+    }
+    
+    nav.active {
+        left: 0;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        padding: 30px;
+    }
+    
+    nav ul li {
+        margin: 15px 0;
+    }
+    
+    .reservation-form {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-group.full {
+        grid-column: 1;
+    }
+    
+    .hero-content h1 {
+        font-size: 36px;
+    }
+    
+    .hero-content p {
+        font-size: 16px;
+    }
+}
+    </style>
+</head>
+<body>
+<!-- Header & Navigation -->
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="chef-hat-icon" viewBox="0 0 16 16">
+                    <path d="M15.82,4.11a.5.5,0,0,0-.44-.32l-2.18-.36-1.03-4.2a.5.5,0,0,0-.96-.08L10.2,3.43,7.82,3.1a.5.5,0,0,0-.52.37L6.27,6.4,3.9,6.07a.5.5,0,0,0-.52.37L2.32,9.39,0.14,9.03a.5.5,0,0,0-.52.37l-1,4a.5.5,0,0,0,.62.48l2.18.36,1.03,4.2a.5.5,0,0,0,.96.08L5.8,14.57l2.38.33a.5.5,0,0,0,.52-.37l1.03-2.95,2.38.33a.5.5,0,0,0,.52-.37l1.03-2.95,2.18.36a.5.5,0,0,0,.62-.48l1-4A.5.5,0,0,0,15.82,4.11ZM12,11.5H4a1,1,0,0,1,0-2h8a1,1,0,0,1,0,2Z"/>
+                </svg>
+                Bella <span>Cucina</span>
+            </a>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" title="home">Home</a></li>
+                    <li><a href="#about" title="about">About</a></li>
+                    <li><a href="#menu" title="menu">Menu</a></li>
+                    <li><a href="#testimonials" title="testimonials">Testimonials</a></li>
+                    <li><a href="#reservation" title="reservation">Reservations</a></li>
+                    <li><a href="#contact" title="contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+<!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div>
+                <h1>Authentic Italian Cuisine</h1>
+                <p>Experience the taste of Italy with our handcrafted dishes made from locally sourced ingredients and traditional recipes</p>
+                <a href="#reservation" class="btn">Reserve a Table</a>
+            </div>
+        </div>
+    </section>
+
+<!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Story</h2>
+                <p>Tradition & Passion Since 1985</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Bella Cucina was founded in 1985 by Giovanni and Maria Rossi, bringing the authentic flavors of their hometown in Naples to the heart of the city. What started as a small family trattoria has grown into a beloved culinary destination, known for its warm atmosphere and traditional Italian cuisine.</p>
+                    <p>Today, their son Marco Chealini continues the family tradition, using the same recipes passed down through generations while adding his own creative touch. We take pride in sourcing the finest ingredients, with many imported directly from Italy.</p>
+                    <p>Our chefs are trained in the art of Italian cooking, ensuring every dish that leaves our kitchen meets the highest standards of authenticity and quality.</p>
+                    <a href="#menu" class="btn">View Our Menu</a>
+                </div>
+                <div class="about-image">
+                    <img src="../IMAGES/restaurant-img.jpg" alt="Restaurant Interior">
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Menu Section -->
+    <section id="menu" class="menu">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Menu</h2>
+                <p>Delicious Italian Specialties</p>
+            </div>
+            <div class="menu-filters">
+                <button class="filter-btn active" type="button" data-filter="all">All</button>
+                <button class="filter-btn" type="button" data-filter="appetizers">Appetizers</button>
+                <button class="filter-btn" type="button" data-filter="mains">Main Courses</button>
+                <button class="filter-btn" type="button" data-filter="pasta">Pasta</button>
+                <button class="filter-btn" type="button" data-filter="desserts">Desserts</button>
+            </div>
+            <div class="menu-items">
+            <!-- Appetizers -->
+                <div class="menu-item" data-category="appetizers">
+                    <img src="../IMAGES/Bruschetta-Classica.jpg" alt="Bruschetta">
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>Bruschetta Classica</h3>
+                            <span class="menu-item-price">$9.95</span>
+                        </div>
+                        <p>Toasted bread topped with fresh tomatoes, basil, garlic, and extra virgin olive oil</p>
+                    </div>
+                </div>
+                
+                <div class="menu-item" data-category="appetizers">
+                    <img src="../IMAGES/Antipasto-Misto.jpg" alt="Antipasto">
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>Antipasto Misto</h3>
+                            <span class="menu-item-price">$14.95</span>
+                        </div>
+                        <p>Cured meats, cheeses, roasted vegetables, and olives served with fresh bread</p>
+                    </div>
+                </div>
+                
+                <!-- Main Courses -->
+                <div class="menu-item" data-category="mains">
+                    <img src="../IMAGES/Osso-Buco-alla-Milanese.jpg" alt="Osso Buco">
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>Osso Buco alla Milanese</h3>
+                            <span class="menu-item-price">$28.95</span>
+                        </div>
+                        <p>Braised veal shanks with saffron risotto and gremolata</p>
+                    </div>
+                </div>
+                
+                <div class="menu-item" data-category="mains">
+                    <img src="../IMAGES/brainzino-al-sale.jpg" alt="Sea Bass">
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>Branzino al Sale</h3>
+                            <span class="menu-item-price">$26.95</span>
+                        </div>
+                        <p>Mediterranean sea bass baked in sea salt with roasted vegetables</p>
+                    </div>
+                </div>
+                
+                <!-- Pasta -->
+                <div class="menu-item" data-category="pasta">
+                    <img src="../IMAGES/Spaghetti-Carbonara.jpg" alt="Pasta Carbonara">
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>Spaghetti Carbonara</h3>
+                            <span class="menu-item-price">$16.95</span>
+                        </div>
+                        <p>Classic Roman pasta with eggs, pecorino cheese, guanciale, and black pepper</p>
+                    </div>
+                </div>
+                
+                <div class="menu-item" data-category="pasta">
+                    <img src="../IMAGES/lasagna-della-casa.avif" alt="Lasagna">
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>Lasagna della Casa</h3>
+                            <span class="menu-item-price">$18.95</span>
+                        </div>
+                        <p>Layers of pasta, beef ragu, béchamel sauce, and Parmigiano Reggiano</p>
+                    </div>
+                </div>
+                
+                <!-- Desserts -->
+                <div class="menu-item" data-category="desserts">
+                    <img src="../IMAGES/Tiramisu.jpg" alt="Tiramisu">
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>Tiramisu</h3>
+                            <span class="menu-item-price">$8.95</span>
+                        </div>
+                        <p>Layers of coffee-soaked ladyfingers and mascarpone cream</p>
+                    </div>
+                </div>
+                
+                <div class="menu-item" data-category="desserts">
+                    <img src="../IMAGES/Panna-Cotta-ai-Frutti-di-Bosco.jpg" alt="Panna Cotta">
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>Panna Cotta ai Frutti di Bosco</h3>
+                            <span class="menu-item-price">$7.95</span>
+                        </div>
+                        <p>Vanilla panna cotta with mixed berry compote</p>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="appetizers">
+                    <img src="../IMAGES/bolognese.jpg" alt="Bolognese">
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3> Bolognese</h3>
+                            <span class="menu-item-price">$9.95</span>
+                        </div>
+                        <p>A classic meat sauce that hails from its namesake Bologna.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container testimonials-container">
+            <div class="section-title">
+                <h2>What Our Guests Say</h2>
+                <p>Memorable Dining Experiences</p>
+            </div>
+            
+            <div class="testimonial active">
+                <p class="testimonial-text">"The best Italian restaurant in town! The pasta was cooked to perfection and the service was exceptional. Will definitely be back!"</p>
+                <p class="testimonial-author">- Jessica Miller</p>
+            </div>
+            
+            <div class="testimonial">
+                <p class="testimonial-text">"Authentic flavors that transported us right back to our trip to Italy. The osso buco was melt-in-your-mouth delicious."</p>
+                <p class="testimonial-author">- Robert Johnson</p>
+            </div>
+            
+            <div class="testimonial">
+                <p class="testimonial-text">"The atmosphere was warm and inviting, and the food was outstanding. The tiramisu is a must-try!"</p>
+                <p class="testimonial-author">- Sarah Williams</p>
+            </div>
+            
+            <div class="testimonial-nav">
+                <div class="testimonial-dot active" data-index="0"></div>
+                <div class="testimonial-dot" data-index="1"></div>
+                <div class="testimonial-dot" data-index="2"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation Section -->
+    <section id="reservation" class="reservation">
+        <div class="container">
+            <div class="section-title">
+                <h2>Make a Reservation</h2>
+                <p>Book Your Table Online</p>
+            </div>
+            
+            <form class="reservation-form" action="https://formsubmit.co/leoemmy2005@gmail.com" method="POST">
+                <!-- This hidden input sets the subject line for the email you receive -->
+                <input type="hidden" name="_subject" value="New Reservation from Bella Cucina Website!">
+
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="guests">Number of Guests</label>
+                    <select id="guests" name="guests" required>
+                        <option value="">Select...</option>
+                        <option value="1">1 Person</option>
+                        <option value="2">2 People</option>
+                        <option value="3">3 People</option>
+                        <option value="4">4 People</option>
+                        <option value="5">5 People</option>
+                        <option value="6">6 People</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="time">Time</label> 
+                    <select id="time" name="time" required>
+                        <option value="">Select...</option>
+                        <option value="17:00">5:00 PM</option>
+                        <option value="17:30">5:30 PM</option>
+                        <option value="18:00">6:00 PM</option>
+                        <option value="18:30">6:30 PM</option>
+                        <option value="19:00">7:00 PM</option>
+                        <option value="19:30">7:30 PM</option>
+                        <option value="20:00">8:00 PM</option>
+                        <option value="20:30">8:30 PM</option>
+                        <option value="21:00">9:00 PM</option>
+                    </select>
+                </div>
+                
+                <div class="form-group full">
+                    <label for="message">Special Requests</label>
+                    <textarea id="message" name="message" rows="4"></textarea>
+                </div>
+                
+                <div class="form-group full">
+                    <button type="submit" class="btn">Book Now</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+<!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Bella Cucina</h3>
+                    <p>Authentic Italian cuisine prepared with passion and the finest ingredients since 1985.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                                <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
+                            </svg><span class="sr-only">facebook</span>
+                        </a>
+                        <a href="#" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+                                <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+                            </svg>
+                            <span class="sr-only">instagram</span>
+                        </a>
+                        <a href="#" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
+                                <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+                            </svg>
+                            <span class="sr-only">twitter</span>
+                        </a>
+                        <a href="#" aria-label="TripAdvisor">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tripadvisor" viewBox="0 0 16 16">
+                                <path d="M15.5,8.13c0-4.15-3.35-7.5-7.5-7.5s-7.5,3.35-7.5,7.5c0,2.36,1.1,4.47,2.85,5.85l-1.07,3.83,3.83-1.07c1.17,0.49,2.45,0.76,3.8,0.76,4.15,0,7.5-3.35,7.5-7.5Zm-4.17-1.93c0-1.21-0.99-2.2-2.2-2.2s-2.2,0.99-2.2,2.2,0.99,2.2,2.2,2.2,2.2-0.99,2.2-2.2Zm-5.36,0c0-1.21-0.99-2.2-2.2-2.2s-2.2,0.99-2.2,2.2,0.99,2.2,2.2,2.2,2.2-0.99,2.2-2.2Z"/>
+                            </svg>
+                            <span class="sr-only">tripadvisor</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Main Street, City, State 10001</p>
+                        <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                        <p><i class="fas fa-envelope"></i> info@bellacucina.com</p>
+                        <p><i class="fas fa-clock"></i> Mon-Thu: 11am-10pm, Fri-Sat: 11am-11pm, Sun: 12pm-9pm</p>
+                    </div>
+                </div>
+                
+                <div class="footer-section footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#" title="home">Home</a></li>
+                        <li><a href="#about" title="about">About Us</a></li>
+                        <li><a href="#menu" title="menu">Menu</a></li>
+                        <li><a href="#reservation" title="reservation">Reservations</a></li>
+                        <li><a href="#contact" title="contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Bella Cucina. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+      // Sticky Header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            header.classList.toggle('scrolled', window.scrollY > 100);
+        });
+        
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav');
+        
+        menuToggle.addEventListener('click', function() {
+            nav.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+            });
+        });
+        
+        // Menu Filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const menuItems = document.querySelectorAll('.menu-item');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filterValue = button.getAttribute('data-filter');
+                
+                menuItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Testimonial Slider
+        const testimonialDots = document.querySelectorAll('.testimonial-dot');
+        const testimonials = document.querySelectorAll('.testimonial');
+        
+        testimonialDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const index = dot.getAttribute('data-index');
+                
+                // Remove active class from all dots and testimonials
+                testimonialDots.forEach(d => d.classList.remove('active'));
+                testimonials.forEach(t => t.classList.remove('active'));
+                
+                // Add active class to clicked dot and corresponding testimonial
+                dot.classList.add('active');
+                testimonials[index].classList.add('active');
+            });
+        });
+        
+        // Auto rotate testimonials
+        let testimonialIndex = 0;
+        function rotateTestimonials() {
+            testimonialDots.forEach(d => d.classList.remove('active'));
+            testimonials.forEach(t => t.classList.remove('active'));
+            
+            testimonialIndex = (testimonialIndex + 1) % testimonials.length;
+            
+            testimonialDots[testimonialIndex].classList.add('active');
+            testimonials[testimonialIndex].classList.add('active');
+        }
+        
+        setInterval(rotateTestimonials, 5000);
+        
+        // Set minimum date for reservation to today
+        const dateInput = document.getElementById('date');
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+
+    </script>
+</body>
+</html> 
